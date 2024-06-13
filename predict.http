@@ -1,0 +1,28 @@
+  
+# @server = http://localhost:4004
+@server = http://localhost:36531
+
+
+####OData-V4#####
+# POST http://localhost:43681/odata/v4/api/SendMail HTTP/1.1
+# Content-Type:  application/json
+# {
+#     "fromEmail":" gideon.klein16@ethereal.email",
+#     "to":"abhishek@ornatets.com",
+#     "body":"hello",
+#     "text":"same"
+
+# }
+
+
+####OData-V2#####
+POST {{server}}/odata/v2/api/mailNow  HTTP/1.1
+Content-Type:  application/json
+
+{
+    "fromEmail":" gideon.klein16@ethereal.email",
+    "to":"abhishek@ornatets.com",
+    "subject":"hello",
+    "text":"same"
+
+}

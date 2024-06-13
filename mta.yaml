@@ -65,20 +65,8 @@ modules:
       content-target: true
   build-parameters:
     build-result: resources
-    requires:
-    - artifacts:
-      - mailsend.zip
-      name: mailsend
-      target-path: resources/
-- name: mailsend
-  type: html5
-  path: app/mailsend
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
+  
+
     supported-platforms: []
 resources:
 - name: capMail-auth

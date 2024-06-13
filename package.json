@@ -1,57 +1,59 @@
 {
-  "name": "capMail",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@cap-js-community/odata-v2-adapter": "^1.12.10",
-    "@sap-cloud-sdk/mail-client": "^3.15.0",
-    "@sap/cds": "^7",
-    "@sap/cds-hana": "^2",
-    "@sap/xssec": "^3",
-    "express": "^4"
-  },
-  "devDependencies": {
-    "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^7",
-    "@sap/eslint-plugin-cds": "^3",
-    "eslint": "^9",
-    "rimraf": "^5.0.5"
-  },
-  "scripts": {
-    "start": "cds-serve",
-    "watch-mailsend": "cds watch --open mailsend/webapp/index.html?sap-ui-xx-viewCache=false",
-    "undeploy": "cf undeploy capMail --delete-services --delete-service-keys --delete-service-brokers",
-    "build": "rimraf resources mta_archives && mbt build --mtar archive",
-    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
-  },
-  "cds": {
-    "requires": {
-      "db": "hana",
-      "auth": "mocked",
-      "SendMail": {
-        "kind": "rest",
-        "credentials": {
-          "destination": "SendMail"
+    "name": "capMail",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@cap-js-community/odata-v2-adapter": "^1.12.10",
+        "@sap-cloud-sdk/mail-client": "^3.15.0",
+        "@sap/cds": "^7",
+        "@sap/cds-hana": "^2",
+        "@sap/xssec": "^3",
+        "express": "^4"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-dk": "^7",
+        "@sap/eslint-plugin-cds": "^3",
+        "@sap/ux-specification": "UI5-1.124",
+        "eslint": "^9",
+        "rimraf": "^5.0.5"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-mailsend": "cds watch --open mailsend/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy capMail --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "cds": {
+        "requires": {
+            "db": "hana",
+            "auth": "mocked",
+            "SendMail": {
+                "kind": "rest",
+                "credentials": {
+                    "destination": "SendMail",
+                    "forwardAuthToken": true
+                }
+            },
+            "[hybrid]": {
+                "auth": {
+                    "kind": "mocked"
+                },
+                "mailService": {
+                    "kind": "rest",
+                    "credentials": {
+                        "SendMail": "SendMail",
+                        "forwardAuthToken": true
+                    }
+                }
+            }
         }
-      },
-      "[hybrid]": {
-        "auth": {
-          "kind": "mocked"
-        },
-        "mailService": {
-          "kind": "rest",
-          "credentials": {
-            "SendMail": "SendMail",
-            "forwardAuthToken": true
-          }
-        }
-      }
-    }
-  },
-  "sapux": [
-    "app/mailsend"
-  ]
+    },
+    "sapux": [
+        "app/mailsend"
+    ]
 }
