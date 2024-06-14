@@ -1,6 +1,6 @@
   
 # @server = http://localhost:4004
-@server = http://localhost:36531
+@server = http://localhost:4004
 
 
 ####OData-V4#####

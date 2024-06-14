@@ -11,7 +11,8 @@
         "@sap/cds": "^7",
         "@sap/cds-hana": "^2",
         "@sap/xssec": "^3",
-        "express": "^4"
+        "express": "^4",
+        "nodemailer": "^6.9.13"
     },
     "devDependencies": {
         "@cap-js/sqlite": "^1",
@@ -31,7 +32,7 @@
     "cds": {
         "requires": {
             "db": "hana",
-            "auth": "mocked",
+            "auth": "xsuaa",
             "SendMail": {
                 "kind": "rest",
                 "credentials": {
@@ -41,12 +42,23 @@
             },
             "[hybrid]": {
                 "auth": {
-                    "kind": "mocked"
+                    "kind": "xsuaa"
                 },
-                "mailService": {
+                "SendMail": {
                     "kind": "rest",
                     "credentials": {
-                        "SendMail": "SendMail",
+                        "destination": "SendMail",
+                        "forwardAuthToken": true
+                    }
+                }
+            },
+            "[production]": {
+                "connectivity": true,
+                "auth": "xsuaa",
+                "SendMail": {
+                    "kind": "rest",
+                    "credentials": {
+                        "destination": "SendMail",
                         "forwardAuthToken": true
                     }
                 }
