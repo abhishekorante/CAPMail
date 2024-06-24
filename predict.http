@@ -1,6 +1,6 @@
   
-# @server = http://localhost:4004
-@server = http://localhost:4004
+ @server = http://localhost:4004
+# @server = http://localhost:44515
 
 
 ####OData-V4#####
@@ -20,7 +20,7 @@ POST {{server}}/odata/v2/api/mailNow  HTTP/1.1
 Content-Type:  application/json
 
 {
-    "fromEmail":" gideon.klein16@ethereal.email",
+    "fromEmail":"erling94@ethereal.email",
     "to":"abhishek@ornatets.com",
     "subject":"hello",
     "text":"same"

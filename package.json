@@ -10,7 +10,7 @@
         "@sap-cloud-sdk/mail-client": "^3.15.0",
         "@sap/cds": "^7",
         "@sap/cds-hana": "^2",
-        "@sap/xssec": "^3",
+        "@sap/xssec": "^3.6.1",
         "express": "^4",
         "nodemailer": "^6.9.13"
     },
@@ -31,38 +31,18 @@
     },
     "cds": {
         "requires": {
-            "db": "hana",
-            "auth": "xsuaa",
+           
+            "auth": "mocked",
+            
             "SendMail": {
                 "kind": "rest",
                 "credentials": {
                     "destination": "SendMail",
                     "forwardAuthToken": true
                 }
-            },
-            "[hybrid]": {
-                "auth": {
-                    "kind": "xsuaa"
-                },
-                "SendMail": {
-                    "kind": "rest",
-                    "credentials": {
-                        "destination": "SendMail",
-                        "forwardAuthToken": true
-                    }
-                }
-            },
-            "[production]": {
-                "connectivity": true,
-                "auth": "xsuaa",
-                "SendMail": {
-                    "kind": "rest",
-                    "credentials": {
-                        "destination": "SendMail",
-                        "forwardAuthToken": true
-                    }
-                }
             }
+          
+           
         }
     },
     "sapux": [
